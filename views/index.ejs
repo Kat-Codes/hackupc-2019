@@ -4,6 +4,7 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
       <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
 <body>
   <div class="container">
@@ -31,6 +32,7 @@
   <script>
   $().ready(() => {
     $("#send").click(() => {
+      console.log('heck');
       sendMessage({
         name: $("#name").val(), 
         message: $("#message").val()
@@ -47,14 +49,14 @@
   )}
    
   function getMessages() {
-    console.log("get messages");
-    $.get("http://localhost:3000/messages", data => {
+    console.log("get messages")
+    axios.post('http://localhost:3000/messages').then(data => {
       data.forEach(addMessages);
-    });
-}
+    }).catch(console.error);
+  }
  
   function sendMessage(message) {
-    $.post("http://localhost:3000/messages", message);
+    axios.post('/messages', message).catch(console.error);
   }
   </script>
 </body>
