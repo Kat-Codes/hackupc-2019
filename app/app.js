@@ -49,9 +49,9 @@ client.connect(err => {
 });
 
 app.get('/messages', (req, res) => {
-  Message.find({},(err, messages)=> {
+  Message.find({}, (err, messages) => {
     res.send(messages);
-  })
+  });
 
   //Axios HTTP request
   const axios = require('axios')
@@ -75,21 +75,22 @@ app.get('/messages', (req, res) => {
       })
       .catch(error => {
         console.log(error)
-      })
+      });
   }
 
-  countBreeds()
-  console.log("Here")
+  countBreeds();
+  console.log("Here");
 })
 
 app.post('/messages', (req, res) => {
   var message = new Message(req.body);
-  message.save((err) =>{
-    if(err)
+  message.save(err =>{
+    if (err) {
       sendStatus(500);
+    }
     res.sendStatus(200);
-  })
-})
+  });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
