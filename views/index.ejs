@@ -5,12 +5,13 @@
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
       <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
       <link href="https://fonts.googleapis.com/css?family=Red+Hat+Text|Staatliches&display=swap" rel="stylesheet"> 
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
 <body>
   <div class="container">
     <br>
-    <div class="jumbotron">
-    <h1 class="display-4 text-left">Send message</h1>
+    <div class="bigBoi jumbotron">
+    <h1 class="display-4 text-center">Send Message</h1>
     <br>
     <input id="name" class="form-control" placeholder="Name">
     <br>
@@ -32,6 +33,7 @@
   <script>
   $().ready(() => {
     $("#send").click(() => {
+      console.log('heck');
       sendMessage({
         name: $("#name").val(), 
         message: $("#message").val()
@@ -43,22 +45,20 @@
     
   function addMessages(message) {
     $('#messages').append(`
-      <h4>${message.name}</h4>
-      <p>${message.message}</p>`
-    );
-  }
+        <h4> ${message.name} </h4>
+        <p>  ${message.message} </p>`
+  )}
    
   function getMessages() {
-    console.log("get messages");
-    $.get("http://localhost:3000/messages", data => {
+    console.log("get messages")
+    axios.post('http://localhost:3000/messages').then(data => {
       data.forEach(addMessages);
-    });
-}
+    }).catch(console.error);
+  }
  
   function sendMessage(message) {
-    $.ajax("http://localhost:3000/messages", message);
+    axios.post('/messages', message).catch(console.error);
   }
-  
-</script>
+  </script>
 </body>
 </html>

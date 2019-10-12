@@ -24,12 +24,13 @@ h1 {
   background-color: rgb(73, 139, 192);
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-}
-
 .jumbotron {
   background-color: rgb(241, 241, 241);
   width: 500px;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
