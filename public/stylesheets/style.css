@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px 'Red Hat Text', sans-serif;
   background-image: linear-gradient(to bottom right, rgb(127, 161, 187), rgb(39, 99, 148));
   min-height: 100vh;
@@ -18,6 +17,7 @@ h1 {
   font: 25px 'Staatliches', cursive;
   background-color: black;
   border: none;
+  float: right;
 }
 
 .btn:hover {
@@ -31,6 +31,8 @@ h1 {
 
 .container {
   width: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
