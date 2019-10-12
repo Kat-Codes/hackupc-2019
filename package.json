@@ -1,23 +1,18 @@
 {
-  "name": "hackupc-2019",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "app",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/katiew812/hackupc-2019.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/katiew812/hackupc-2019/issues"
-  },
-  "homepage": "https://github.com/katiew812/hackupc-2019#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "mongoose": "^5.7.4"
+    "axios": "^0.19.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "mongoose": "^5.7.4",
+    "morgan": "~1.9.1"
   }
 }
