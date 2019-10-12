@@ -8,7 +8,7 @@
 <body>
   <div class="container">
     <br>
-    <div class="jumbotron">
+    <div class="bigBoi jumbotron">
     <h1 class="display-4 text-center">Send Message</h1>
     <br>
     <input id="name" class="form-control" placeholder="Name">
@@ -42,10 +42,9 @@
     
   function addMessages(message) {
     $('#messages').append(`
-      <h4>${message.name}</h4>
-      <p>${message.message}</p>`
-    );
-  }
+        <h4> ${message.name} </h4>
+        <p>  ${message.message} </p>`
+  )}
    
   function getMessages() {
     console.log("get messages");
@@ -57,7 +56,6 @@
   function sendMessage(message) {
     $.post("http://localhost:3000/messages", message);
   }
-  
-</script>
+  </script>
 </body>
 </html>

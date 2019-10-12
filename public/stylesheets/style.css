@@ -12,3 +12,15 @@ a {
 h1 {
   color: rgb(32, 15, 15);
 }
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.bigBoi {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
