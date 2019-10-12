@@ -1,7 +1,7 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-image: linear-gradient(to bottom right, red, yellow);
+  font: 14px 'Red Hat Text', sans-serif;
+  background-image: linear-gradient(to bottom right, rgb(127, 161, 187), rgb(39, 99, 148));
   min-height: 100vh;
 }
 
@@ -11,4 +11,25 @@ a {
 
 h1 {
   color: rgb(32, 15, 15);
+  font-family: 'Staatliches', cursive;
+}
+
+.btn {
+  font: 25px 'Staatliches', cursive;
+  background-color: black;
+  border: none;
+}
+
+.btn:hover {
+  background-color: rgb(73, 139, 192);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.jumbotron {
+  background-color: rgb(241, 241, 241);
+  width: 500px;
 }
