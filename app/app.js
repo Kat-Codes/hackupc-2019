@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/css',express.static(path.join(__dirname, 'public/css')));
+app.use(express.static(__dirname + '/public'));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -33,7 +33,7 @@ app.use('/users', usersRouter);
 var Message = mongoose.model("Message",{ name : String, message : String})
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({extended: false}));
 
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://" + DB_USER + ":" + DB_PASSWORD + "@" + DB_HOST + "/test?retryWrites=true&w=majority";
