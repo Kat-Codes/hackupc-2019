@@ -5,14 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
-var axios = require("axios");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
-var DB_USER = 'admin';
-var DB_PASSWORD = 'mosJrPLOO5vAfaak';
-var DB_HOST = 'cluster0-tr6sd.mongodb.net';
 
 var app = express();
 
@@ -30,23 +25,10 @@ app.use(express.static(__dirname + '/public'));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-var Message = mongoose.model("Message",{ name : String, message : String})
+var Message = mongoose.model("Message", { name : String, message : String})
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://" + DB_USER + ":" + DB_PASSWORD + "@" + DB_HOST + "/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  if (err) {
-    throw err;
-  }
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  console.log("connected fam")
-  client.close();
-});
 
 app.get('/messages', (req, res) => {
   Message.find({}, (err, messages) => {
