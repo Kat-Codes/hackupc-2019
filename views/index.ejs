@@ -36,8 +36,11 @@
         name: $("#name").val(), 
         message: $("#message").val()
       });
+      color = '#' + (function co(lor){   return (lor +=
+  [0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f'][Math.floor(Math.random()*16)])
+  && (lor.length == 6) ?  lor : co(lor); })('');
       $('.wall-of-text').append(
-        `<span style="position: absolute; z-index: -1; font-size: ${Math.random() * 1000}%; left: ${Math.floor((Math.random() * $(document).width()))- 200}px; top: ${Math.floor((Math.random() * $(document).height())) - 200}px">
+        `<span style="color: ${color}; position: absolute; z-index: -1; font-size: ${Math.random() * 1000}%; left: ${Math.floor((Math.random() * $(document).width()))- 200}px; top: ${Math.floor((Math.random() * $(document).height())) - 200}px">
           ${$("#name").val()}: ${$("#message").val()}</span>`
       )
     });
@@ -48,8 +51,11 @@
     console.log("get messages")
     axios.get('/messages').then(({data}) => {
       data.forEach(({ name, message }) => {
+        color = '#' + (function co(lor){   return (lor +=
+  [0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f'][Math.floor(Math.random()*16)])
+  && (lor.length == 6) ?  lor : co(lor); })('');
         $('.wall-of-text').append(
-          `<span style="position: absolute; z-index: -1; font-size: ${Math.random() * 1000}%; left: ${Math.floor((Math.random() * $(document).width()))- 200}px; top: ${Math.floor((Math.random() * $(document).height())) - 200}px">
+          `<span style="color: ${color}; position: absolute; z-index: -1; font-size: ${Math.random() * 1000}%; left: ${Math.floor((Math.random() * $(document).width()))- 200}px; top: ${Math.floor((Math.random() * $(document).height())) - 200}px">
             ${name}: ${message}</span>`
         )
       })
