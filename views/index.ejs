@@ -51,10 +51,14 @@
     console.log("get messages")
     axios.get('/messages').then(({data}) => {
       data.forEach(({ name, message }) => {
-        nameProm = axios.get('https://www.purgomalum.com/service/plain?text=' + encodeURI(name) + '&fill_text=woof')
-        messageProm = axios.get('https://www.purgomalum.com/service/plain?text=' + encodeURI(message) + '&fill_text=woof')
+        console.log(2, name, message)
+        performRandomTransformation(name, message).then(({ name, message }) => {
+          console.log(1, name, message)
+          nameProm = axios.get('https://www.purgomalum.com/service/plain?text=' + encodeURI(name) + '&fill_text=woof')
+          messageProm = axios.get('https://www.purgomalum.com/service/plain?text=' + encodeURI(message) + '&fill_text=woof')
 
-        Promise.all([nameProm, messageProm]).then(([nameRes, messageRes]) => {
+          return Promise.all([nameProm, messageProm]);
+        }).then(([nameRes, messageRes]) => {
           color = '#' + (function co(lor){   return (lor += [0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f'][Math.floor(Math.random()*16)]) && (lor.length == 6) ?  lor : co(lor); })('');
           name = nameRes.data;
           message = messageRes.data;
@@ -70,6 +74,25 @@
  
   function sendMessage(message) {
     axios.post('/messages', message).catch(console.error);
+  }
+
+  function performRandomTransformation(name, message) {
+    fns = [nullTransform];
+    return fns[Math.floor(Math.random() * fns.length)](name, message);
+  }
+
+  function nullTransform(name, message) {
+    return new Promise((resolve, reject) => {
+      resolve({ name, message });
+    });
+  }
+
+  function getValleySpeak(name, message) {
+    return new Promise((resolve, reject) => {
+      axios
+        .post('/transform/valley', { text: message })
+        .then(res => resolve(name, res.contents.translated))
+    });
   }
   </script>
 </body>

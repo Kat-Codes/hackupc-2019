@@ -8,6 +8,7 @@ var mongoose = require("mongoose");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var transformRouter = require('./routes/transform');
 
 var app = express();
 
@@ -24,6 +25,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/transform', transformRouter);
 
 var Message = mongoose.model("Message", { name : String, message : String})
 
