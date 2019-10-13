@@ -22,11 +22,6 @@
     <br>
     <button id="send" class="btn btn-success">Send</button>
     </div>
-    <div class="container">
-        <br>
-        <div class="bigBoi jumbotron" id="messages">
-        </div>
-  </div>
   <script
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -41,7 +36,10 @@
         name: $("#name").val(), 
         message: $("#message").val()
       });
-      getMessages();
+      $('.wall-of-text').append(
+        `<span style="position: absolute; z-index: -1; font-size: ${Math.random() * 1000}%; left: ${Math.floor((Math.random() * $(document).width()))- 200}px; top: ${Math.floor((Math.random() * $(document).height())) - 200}px">
+          ${$("#name").val()}: ${$("#message").val()}</span>`
+      )
     });
     getMessages();
   });
